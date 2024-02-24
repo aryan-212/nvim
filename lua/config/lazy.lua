@@ -6,13 +6,22 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.swapfile = false
+-- require("autosave.action").enable()
 require("lazy").setup({
   spec = {
+    {
+      "barrett-ruth/live-server.nvim",
+      build = "pnpm add -g live-server",
+      cmd = { "LiveServerStart", "LiveServerStop" },
+      config = true,
+    },
+
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
+
     --{ //import = "lazyvim.plugins.extras.ui.mini-animate" },
     { "CRAG666/code_runner.nvim", config = true },
     "0x00-ketsu/autosave.nvim",
@@ -20,8 +29,7 @@ require("lazy").setup({
     event = { "InsertLeave", "TextChanged" },
     config = function()
       require("autosave").setup({
-        enable = true,
-        prompt_style = "notify",
+        enabled = true,
 
         -- your configuration comes here
         -- or leave it empty to use the default settings
