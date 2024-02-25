@@ -23,9 +23,9 @@ local alpha = function()
   return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
 end
 -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-vim.g.neovide_transparency = 0.7
-vim.g.transparency = 0.9
-vim.g.neovide_background_color = "#0f1117" .. alpha()
+vim.g.neovide_transparency = 0.9
+vim.g.transparency = 1.0
+vim.g.neovide_background_color = "#0fffff" .. alpha()
 vim.g.neovide_theme = "auto"
 
 -- require("autosave.action").enable()
@@ -37,6 +37,12 @@ require("lazy").setup({
       cmd = { "LiveServerStart", "LiveServerStop" },
       config = true,
     },
+    {
+  "olrtg/nvim-emmet",
+  config = function()
+    vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+  end,
+},
 
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -73,7 +79,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "habamax", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
