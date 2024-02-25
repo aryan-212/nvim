@@ -3,4 +3,4 @@
 -- Add any additional keymaps here
 vim.keymap.set("n", "<leader>r", ":RunCode<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>cb", ":bd<CR>", { noremap = true, silent = false })
-vim.keymap.set("n", "<leader>h", ":Telescope find_files hidden=true", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><leader>", ":Telescope find_files hidden=true<CR>", { noremap = true, silent = true })

@@ -6,6 +6,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.swapfile = false
+--- Use the following to make a command run on its own on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("ASEnable")
+  end,
+})
 -- require("autosave.action").enable()
 require("lazy").setup({
   spec = {
