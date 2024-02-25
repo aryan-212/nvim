@@ -12,6 +12,22 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("ASEnable")
   end,
 })
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_z_height = 10
+vim.g.neovide_light_angle_degrees = 45
+vim.g.neovide_light_radius = 5
+vim.o.guifont = "Fira Code iScript:h17" -- text below applies for VimScript
+
+-- Helper function for transparency formatting
+local alpha = function()
+  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+end
+-- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+vim.g.neovide_transparency = 0.7
+vim.g.transparency = 0.9
+vim.g.neovide_background_color = "#0f1117" .. alpha()
+vim.g.neovide_theme = "auto"
+
 -- require("autosave.action").enable()
 require("lazy").setup({
   spec = {
@@ -36,6 +52,7 @@ require("lazy").setup({
     config = function()
       require("autosave").setup({
         enabled = true,
+        debounce_delay = 135,
 
         -- your configuration comes here
         -- or leave it empty to use the default settings
