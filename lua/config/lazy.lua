@@ -23,8 +23,8 @@ local alpha = function()
   return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
 end
 -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-vim.g.neovide_transparency = 0.9
-vim.g.transparency = 1.0
+vim.g.neovide_transparency = 0.7
+vim.g.transparency = 0.1
 vim.g.neovide_background_color = "#0fffff" .. alpha()
 vim.g.neovide_theme = "auto"
 
@@ -38,15 +38,37 @@ require("lazy").setup({
       config = true,
     },
     {
-  "olrtg/nvim-emmet",
-  config = function()
-    vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
-  end,
-},
+      "olrtg/nvim-emmet",
+      config = function()
+        vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
+      end,
+    },
 
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
+    {
+      "nvimdev/dashboard-nvim",
+      event = "VimEnter",
+      opts = function(_, opts)
+        local logo = [[
+        
+   ▄████████    ▄████████ ▄██   ▄   ███▄▄▄▄    ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄   
+  ███    ███   ███    ███ ███   ██▄ ███▀▀▀██▄ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄ 
+  ███    ███   ███    ███ ███▄▄▄███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
+  ███    ███  ▄███▄▄▄▄██▀ ▀▀▀▀▀▀███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
+▀███████████ ▀▀███▀▀▀▀▀   ▄██   ███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
+  ███    ███ ▀███████████ ███   ███ ███   ███ ███    ███ ███  ███   ███   ███ 
+  ███    ███   ███    ███ ███   ███ ███   ███ ███    ███ ███  ███   ███   ███ 
+  ███    █▀    ███    ███  ▀█████▀   ▀█   █▀   ▀██████▀  █▀    ▀█   ███   █▀  
+               ███    ███                                                     
+
+      ]]
+
+        logo = string.rep("\n", 8) .. logo .. "\n\n"
+        opts.config.header = vim.split(logo, "\n")
+      end,
+    },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
 

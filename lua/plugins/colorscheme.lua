@@ -4,7 +4,7 @@ return {
     opts = {
       transparent = true,
       styles = {
-        sidebars = "transparent",
+      sidebars = "transparent",
         floats = "transparent",
         disable_horizontal_bar = true,
       },
