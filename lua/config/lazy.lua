@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("ASEnable")
   end,
 })
+vim.g.neovide_scale_factor = 0.5
 vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_z_height = 10
 vim.g.neovide_light_angle_degrees = 45
@@ -31,6 +32,23 @@ vim.g.neovide_theme = "auto"
 -- require("autosave.action").enable()
 require("lazy").setup({
   spec = {
+    {
+      "kawre/leetcode.nvim",
+      build = ":TSUpdate html",
+      dependencies = {
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/plenary.nvim", -- required by telescope
+        "MunifTanjim/nui.nvim",
+
+        -- optional
+        "nvim-treesitter/nvim-treesitter",
+        "rcarriga/nvim-notify",
+        "nvim-tree/nvim-web-devicons",
+      },
+      opts = {
+        -- configuration goes here
+      },
+    },
     {
       "barrett-ruth/live-server.nvim",
       build = "pnpm add -g live-server",
