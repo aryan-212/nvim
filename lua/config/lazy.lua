@@ -17,7 +17,7 @@ vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_z_height = 10
 vim.g.neovide_light_angle_degrees = 45
 vim.g.neovide_light_radius = 5
-vim.o.guifont = "Fira Code iScript:h17" -- text below applies for VimScript
+vim.o.guifont = "Fira Code iScript:h19" -- text below applies for VimScript
 
 -- Helper function for transparency formatting
 local alpha = function()
@@ -28,6 +28,10 @@ vim.g.neovide_transparency = 0.7
 vim.g.transparency = 0.1
 vim.g.neovide_background_color = "#0fffff" .. alpha()
 vim.g.neovide_theme = "auto"
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_cursor_vfx_opacity = 100.0
+vim.g.neovide_cursor_vfx_particle_lifetime = 0.7
+vim.g.neovide_cursor_vfx_particle_density = 100.0
 
 -- require("autosave.action").enable()
 require("lazy").setup({

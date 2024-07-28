@@ -1,6 +1,7 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.coding.tabnine",
+    "lazyvim.plugins.extras.lang.rust"
   ],
   "news": {
     "NEWS.md": "6520"
