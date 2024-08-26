@@ -7,11 +7,6 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.swapfile = false
 --- Use the following to make a command run on its own on startup
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.cmd("ASEnable")
-  end,
-})
 vim.g.neovide_scale_factor = 0.5
 vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_z_height = 10
