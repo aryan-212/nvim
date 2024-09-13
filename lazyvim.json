@@ -1,8 +1,11 @@
 {
   "extras": [
     "lazyvim.plugins.extras.coding.tabnine",
+    "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.lang.clangd",
-    "lazyvim.plugins.extras.lang.r"
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.r",
+    "lazyvim.plugins.extras.lang.sql"
   ],
   "news": {
     "NEWS.md": "6520"
