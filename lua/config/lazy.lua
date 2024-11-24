@@ -28,7 +28,7 @@ vim.g.neovide_cursor_vfx_opacity = 100.0
 vim.g.neovide_cursor_vfx_particle_lifetime = 0.7
 vim.g.neovide_cursor_vfx_particle_density = 100.0
 
--- require("autosave.action").enable()
+-- require("autosave.action").enable()e
 require("lazy").setup({
   spec = {
     {
@@ -119,7 +119,15 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "habamax", "habamax" } },
-  checker = { enabled = true, notify = flase }, -- automatically check for plugin updates
+  -- checker = { enabled = true, notify = flase }, -- automatically check for plugin updates
+  checker = {
+    -- automatically check for plugin updates
+    enabled = false,
+    concurrency = nil, ---@type number? set to 1 to check for updates very slowly
+    notify = true, -- get a notification when new updates are found
+    frequency = 3600, -- check for updates every hour
+    check_pinned = false, -- check for pinned packages that can't be updated
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
