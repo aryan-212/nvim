@@ -64,28 +64,6 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    {
-      "nvimdev/dashboard-nvim",
-      event = "VimEnter",
-      opts = function(_, opts)
-        local logo = [[
-        
-   ▄████████    ▄████████ ▄██   ▄   ███▄▄▄▄    ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄   
-  ███    ███   ███    ███ ███   ██▄ ███▀▀▀██▄ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄ 
-  ███    ███   ███    ███ ███▄▄▄███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
-  ███    ███  ▄███▄▄▄▄██▀ ▀▀▀▀▀▀███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
-▀███████████ ▀▀███▀▀▀▀▀   ▄██   ███ ███   ███ ███    ███ ███▌ ███   ███   ███ 
-  ███    ███ ▀███████████ ███   ███ ███   ███ ███    ███ ███  ███   ███   ███ 
-  ███    ███   ███    ███ ███   ███ ███   ███ ███    ███ ███  ███   ███   ███ 
-  ███    █▀    ███    ███  ▀█████▀   ▀█   █▀   ▀██████▀  █▀    ▀█   ███   █▀  
-               ███    ███                                                     
-
-      ]]
-
-        logo = string.rep("\n", 8) .. logo .. "\n\n"
-        opts.config.header = vim.split(logo, "\n")
-      end,
-    },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
 
