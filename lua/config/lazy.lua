@@ -49,6 +49,19 @@ require("lazy").setup({
       },
     },
     {
+      "mistricky/codesnap.nvim",
+      build = "make build_generator",
+      keys = {
+        { "<leader>mc", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+        { "<leader>ko", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
+      },
+      opts = {
+        save_path = "~/Pictures",
+        has_breadcrumbs = true,
+        bg_theme = "bamboo",
+      },
+    },
+    {
       "barrett-ruth/live-server.nvim",
       build = "pnpm add -g live-server",
       cmd = { "LiveServerStart", "LiveServerStop" },
