@@ -7,12 +7,12 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.swapfile = false
 --- Use the following to make a command run on its own on startup
-vim.g.neovide_scale_factor = 0.5
+vim.g.neovide_scale_factor = 1.2
 vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_z_height = 10
 vim.g.neovide_light_angle_degrees = 45
 vim.g.neovide_light_radius = 5
-vim.o.guifont = "Fira Code iScript:h19" -- text below applies for VimScript
+vim.o.guifont = "Iosevka Term Nerd Font:h18" -- text below applies for VimScript
 
 -- Helper function for transparency formatting
 local alpha = function()
@@ -86,6 +86,34 @@ require("lazy").setup({
       config = function()
         vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
       end,
+    },
+    {
+      "neovim/nvim-lspconfig",
+      opts = {
+        servers = {
+          pyright = {
+            on_init = function(client)
+              local cwd = vim.fn.getcwd()
+              local venv_path = cwd .. "/.venv/bin/python"
+              if vim.fn.filereadable(venv_path) == 1 then
+                client.config.settings.python.pythonPath = venv_path
+                client.notify("workspace/didChangeConfiguration", {
+                  settings = client.config.settings,
+                })
+              end
+            end,
+            settings = {
+              python = {
+                analysis = {
+                  autoSearchPaths = true,
+                  diagnosticMode = "openFilesOnly",
+                  useLibraryCodeForTypes = true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
 
     -- add LazyVim and import its plugins
