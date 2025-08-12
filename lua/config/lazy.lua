@@ -88,6 +88,26 @@ require("lazy").setup({
       end,
     },
     {
+      "0x00-ketsu/autosave.nvim",
+      -- lazy-loading on events
+      event = { "InsertLeave", "TextChanged" },
+      config = function()
+        require("autosave").setup({
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+          write_on_bufleave = true,
+          condition = function(buf)
+            local fn = vim.fn
+            local undotree = vim.fn.undotree()
+            if undotree.seq_last ~= undotree.seq_cur then
+              return false -- don't try to save again if I tried to undo. k thanks
+            end
+          end
+        })
+      end,
+    },
+    {
       "neovim/nvim-lspconfig",
       opts = {
         servers = {
@@ -135,6 +155,14 @@ require("lazy").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
+        write_on_bufleave = true,
+        condition = function(buf)
+          local fn = vim.fn
+          local undotree = vim.fn.undotree()
+          if undotree.seq_last ~= undotree.seq_cur then
+            return false -- don't try to save again if I tried to undo. k thanks
+          end
+        end
       })
     end,
 
