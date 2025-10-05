@@ -6,6 +6,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.swapfile = false
+
+-- Fix for TERM=dumb causing path issues with plugins
+if vim.env.TERM == "dumb" then
+  vim.env.TERM = "xterm-256color"
+end
+
 --- Use the following to make a command run on its own on startup
 vim.g.neovide_scale_factor = 1.2
 vim.g.neovide_floating_shadow = true
