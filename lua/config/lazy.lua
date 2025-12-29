@@ -67,6 +67,18 @@ require("lazy").setup({
       "mrcjkb/rustaceanvim",
       version = "^6", -- Recommended
       lazy = false, -- This plugin is already lazy
+      init = function()
+        vim.g.rustaceanvim = {
+          server = {
+            on_attach = function(client, bufnr)
+              -- Ensure virtual text is disabled for rust buffers
+              vim.diagnostic.config({ virtual_text = false }, bufnr)
+              -- Clear any existing diagnostics to prevent conflicts
+              vim.diagnostic.reset(nil, bufnr)
+            end,
+          },
+        }
+      end,
     },
     {
       "mistricky/codesnap.nvim",
@@ -94,6 +106,16 @@ require("lazy").setup({
       end,
     },
     {
+      "rachartier/tiny-inline-diagnostic.nvim",
+      event = "VeryLazy",
+      priority = 1000,
+      config = function()
+        require("tiny-inline-diagnostic").setup()
+        -- Disable Neovim's default virtual text diagnostics after tiny-inline-diagnostic is loaded
+        vim.diagnostic.config({ virtual_text = false })
+      end,
+    },
+    {
       "0x00-ketsu/autosave.nvim",
       -- lazy-loading on events
       event = { "InsertLeave", "TextChanged" },
@@ -109,7 +131,7 @@ require("lazy").setup({
             if undotree.seq_last ~= undotree.seq_cur then
               return false -- don't try to save again if I tried to undo. k thanks
             end
-          end
+          end,
         })
       end,
     },
@@ -168,7 +190,7 @@ require("lazy").setup({
           if undotree.seq_last ~= undotree.seq_cur then
             return false -- don't try to save again if I tried to undo. k thanks
           end
-        end
+        end,
       })
     end,
 
