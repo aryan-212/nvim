@@ -1,4 +1,4 @@
 return {
-  { "williamboman/mason.nvim", version = "^1.0.0" },
-  { "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
+  { "williamboman/mason-lspconfig.nvim", version = "v1.31.0" },
+  { "williamboman/mason.nvim", version = "v1.10.0" },
 }

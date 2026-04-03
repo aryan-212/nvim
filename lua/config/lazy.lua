@@ -41,8 +41,8 @@ require("lazy").setup({
       "kawre/leetcode.nvim",
       build = ":TSUpdate html",
       dependencies = {
-        "nvim-telescope/telescope.nvim",
-        "nvim-lua/plenary.nvim", -- required by telescope
+        "ibhagwan/fzf-lua",
+        "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
 
         -- optional
@@ -169,6 +169,7 @@ require("lazy").setup({
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.editor.fzf" },
 
     --{ //import = "lazyvim.plugins.extras.ui.mini-animate" },
     { "CRAG666/code_runner.nvim", config = true },
