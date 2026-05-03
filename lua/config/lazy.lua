@@ -76,6 +76,25 @@ require("lazy").setup({
               -- Clear any existing diagnostics to prevent conflicts
               vim.diagnostic.reset(nil, bufnr)
             end,
+            default_settings = {
+              ["rust-analyzer"] = {
+                completion = {
+                  autoimport = { enable = true },
+                  autoself = { enable = true },
+                  fullFunctionSignatures = { enable = true },
+                  postfix = { enable = true },
+                },
+                imports = {
+                  granularity = { group = "module", enforce = true },
+                  prefix = "self",
+                  merge = { glob = false },
+                },
+                assist = {
+                  importGranularity = "module",
+                  importPrefix = "self",
+                },
+              },
+            },
           },
         }
       end,
@@ -130,6 +149,9 @@ require("lazy").setup({
             local undotree = vim.fn.undotree()
             if undotree.seq_last ~= undotree.seq_cur then
               return false -- don't try to save again if I tried to undo. k thanks
+            end
+            if vim.bo[buf].filetype == "rust" then
+              return false -- skip autosave for rust so organize-imports only runs on manual :w
             end
           end,
         })

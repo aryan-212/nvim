@@ -12,7 +12,7 @@ return {
       { "<leader>ps", "<cmd>Octo review start<CR>", desc = "Start review" },
     },
     config = function()
-      require("octo").setup()
+      require("octo").setup({ use_local_fs = true })
       require("telescope").load_extension("octo")
     end,
   },
