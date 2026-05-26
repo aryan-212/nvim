@@ -11,18 +11,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- tiny-inline-diagnostic doesn't render inside vim's diff mode (used by
 -- github-pr-reviewer's <C-v> split view), so squigglies show but the message
--- doesn't. Re-enable native virtual_text per-buffer while a window is in diff
--- mode, and turn it back off when leaving diff.
-local function sync_diff_diagnostics()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.diagnostic.config({ virtual_text = vim.wo.diff }, bufnr)
-end
-
-vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
-  callback = sync_diff_diagnostics,
-})
-
-vim.api.nvim_create_autocmd("OptionSet", {
-  pattern = "diff",
-  callback = sync_diff_diagnostics,
+-- doesn't. Surface diagnostics via a float on cursor hold while in a diff
+-- window. (vim.diagnostic.config has no per-buffer virtual_text override, and
+-- toggling it globally double-renders with tiny-inline-diagnostic elsewhere.)
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    if vim.wo.diff then
+      pcall(vim.diagnostic.open_float, nil, {
+        focus = false,
+        scope = "cursor",
+        border = "rounded",
+      })
+    end
+  end,
 })

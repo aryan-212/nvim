@@ -71,9 +71,6 @@ require("lazy").setup({
         vim.g.rustaceanvim = {
           server = {
             on_attach = function(client, bufnr)
-              -- Ensure virtual text is disabled for rust buffers
-              vim.diagnostic.config({ virtual_text = false }, bufnr)
-              -- Clear any existing diagnostics to prevent conflicts
               vim.diagnostic.reset(nil, bufnr)
             end,
             default_settings = {
