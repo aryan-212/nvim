@@ -3,27 +3,10 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {
-          mason = false,
-          autostart = false,
-        },
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pyflakes = {
-                  enabled = false,
-                },
-                mccabe = {
-                  enabled = false,
-                },
-                pycodestyle = {
-                  enabled = false,
-                },
-              },
-            },
-          },
-        },
+        -- Astral Python stack, installed via `uv tool install` (not in Mason).
+        -- mason = false -> use the binaries already on PATH (~/.local/bin).
+        ty = { mason = false }, -- type checker / LSP
+        ruff = { mason = false }, -- linter + formatter
       },
     },
   },
