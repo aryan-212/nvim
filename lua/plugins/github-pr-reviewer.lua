@@ -1,5 +1,6 @@
 return {
   "aryan-212/github-pr-reviewer.nvim",
+  commit = "fa31825dd39dc9c46e5cdc54446e384f64abfdda",
   cmd = {
     "PR",
     "PRReviewMenu",
@@ -7,6 +8,10 @@ return {
     "PRListReviewRequests",
     "PRReviewCleanup",
     "PRReviewBuffer",
+    "PRReviewCommits",
+    "PRReviewMode",
+    "PRNextCommit",
+    "PRPrevCommit",
     "PRInfo",
     "PROpen",
     "PRLoadLastSession",
