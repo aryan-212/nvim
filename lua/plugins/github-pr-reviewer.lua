@@ -1,6 +1,6 @@
 return {
   "aryan-212/github-pr-reviewer.nvim",
-  commit = "aae6f79573187df05c6014da2854b32c70875179",
+  commit = "d03f42455e8a76a11fafe92cc70c7341f7bf93bf",
   cmd = {
     "PR",
     "PRReviewMenu",
